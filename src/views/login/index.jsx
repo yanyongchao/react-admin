@@ -15,7 +15,7 @@ const Login = observer(() => {
   const onFinish = async (values) => {
     const { status } = await user.login(values);
     if (status === 0) {
-      navigate("/");
+      navigate("/dashboard");
     }
   };
   return (

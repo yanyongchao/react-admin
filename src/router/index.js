@@ -19,6 +19,7 @@ const routes = [
   {
     path: "/",
     element: <Appraisal>{lazyLoad("layout")}</Appraisal>,
+    children: [{ path: "/", element: lazyLoad("dashboard") }],
   },
   { path: "*", element: <Navigate to="/" /> },
 ];
