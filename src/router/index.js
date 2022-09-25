@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { getToken } from "@/utils/auth";
 
 const lazyLoad = (moduleName) => {
   const Module = React.lazy(() => import(`@/views/${moduleName}`));
@@ -7,8 +8,7 @@ const lazyLoad = (moduleName) => {
 };
 
 const Appraisal = ({ children }) => {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" />;
+  return getToken() ? children : <Navigate to="/login" />;
 };
 
 const routes = [

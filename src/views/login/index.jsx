@@ -1,11 +1,23 @@
 import React from "react";
 import DocumentTitle from "react-document-title";
-import { Form, Input, Button, message, Spin } from "antd";
+import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useUser } from "@/hooks";
+import { observer } from "mobx-react";
+import { useNavigate } from "react-router-dom";
+
 import "./index.less";
 
-const Login = (props) => {
-  const onFinish = () => {};
+const Login = observer(() => {
+  const user = useUser();
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    const { status } = await user.login(values);
+    if (status === 0) {
+      navigate("/");
+    }
+  };
   return (
     <DocumentTitle title={"用户登录"}>
       <div className="login-container">
@@ -19,7 +31,7 @@ const Login = (props) => {
           autoComplete="off"
         >
           <div className="title">
-            <h2>用户登录</h2>
+            <h2>用户登录</h2> <p>{user.token}</p>
           </div>
           <Form.Item
             name="username"
@@ -55,6 +67,6 @@ const Login = (props) => {
       </div>
     </DocumentTitle>
   );
-};
+});
 
 export default Login;

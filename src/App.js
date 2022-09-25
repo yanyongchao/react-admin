@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import routes from "./router";
-import { Button } from "antd";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import { StoreContext } from "./context";
+import store from "./store";
 
 function Views() {
   return useRoutes(routes);
@@ -9,9 +10,11 @@ function Views() {
 
 const App = () => {
   return (
-    <Router>
-      <Views />
-    </Router>
+    <StoreContext.Provider value={store}>
+      <Router>
+        <Views />
+      </Router>
+    </StoreContext.Provider>
   );
 };
 
