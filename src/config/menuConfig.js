@@ -5,7 +5,7 @@
 const menuList = [
   {
     title: "首页",
-    path: "/dashboard",
+    path: "/",
     icon: "home",
   },
   {

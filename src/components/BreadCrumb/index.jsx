@@ -1,6 +1,7 @@
 import React from "react";
 import { Breadcrumb } from "antd";
 import menuList from "@/config/menuConfig";
+import { useLocation } from "react-router-dom";
 import "./index.less";
 /**
  * 根据当前浏览器地址栏的路由地址，在menuConfig中查找路由跳转的路径
@@ -34,9 +35,8 @@ const getPath = (menuList, pathname) => {
   }
 };
 
-const BreadCrumb = (props) => {
-  const { location } = props;
-  const { pathname } = location;
+const BreadCrumb = () => {
+  const { pathname } = useLocation();
   let path = getPath(menuList, pathname);
   const first = path && path[0];
   if (first && first.title.trim() !== "首页") {

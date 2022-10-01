@@ -1,14 +1,36 @@
-import React from "react";
+import { Layout } from "antd";
+import React, { useState, useMemo } from "react";
 import { Outlet } from "react-router-dom";
+import Sider from "./Sider";
+import Header from "./Header";
+import { LayoutContext } from "./context";
+import "./index.less";
 
-const Layout = (props) => {
-  console.log(props);
+const { Content } = Layout;
+
+const Main = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const contextVal = useMemo(() => {
+    return {
+      collapsed,
+      setCollapsed,
+    };
+  }, [collapsed]);
+
   return (
-    <div>
-      <h2>sss</h2>
-      <Outlet />
-    </div>
+    <LayoutContext.Provider value={contextVal}>
+      <Layout>
+        <Sider></Sider>
+        <Layout className="layout">
+          <Header className="layout-header"></Header>
+          <Content>
+            <Outlet />
+          </Content>
+        </Layout>
+      </Layout>
+    </LayoutContext.Provider>
   );
 };
 
-export default Layout;
+export default Main;

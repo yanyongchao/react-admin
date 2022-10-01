@@ -31,7 +31,11 @@ const FullScreen = () => {
   return (
     <div className="fullScreen-container">
       <Tooltip placement="bottom" title={title}>
-        {isFullscreen ? <FullscreenOutlined /> : <FullscreenExitOutlined />}
+        {isFullscreen ? (
+          <FullscreenOutlined onClick={click} />
+        ) : (
+          <FullscreenExitOutlined onClick={click} />
+        )}
       </Tooltip>
     </div>
   );

@@ -31,7 +31,7 @@ const Login = observer(() => {
           autoComplete="off"
         >
           <div className="title">
-            <h2>用户登录</h2> <p>{user.token}</p>
+            <h2>用户登录</h2>
           </div>
           <Form.Item
             name="username"
