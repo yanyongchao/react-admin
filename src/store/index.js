@@ -1,3 +1,4 @@
 import userStore from "./user";
-const store = { userStore };
+import settingsStore from "./settings";
+const store = { userStore, settingsStore };
 export default store;
