@@ -3,6 +3,7 @@ import routes from "./router";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import { StoreContext } from "./context";
 import store from "./store";
+import { ConfigProvider } from "antd";
 
 function Views() {
   return useRoutes(routes);
@@ -10,13 +11,15 @@ function Views() {
 
 const App = () => {
   return (
-    <StoreContext.Provider value={store}>
-      <Suspense fallback={<div>Loading</div>}>
-        <Router>
-          <Views />
-        </Router>
-      </Suspense>
-    </StoreContext.Provider>
+    <ConfigProvider prefixCls="custom">
+      <StoreContext.Provider value={store}>
+        <Suspense fallback={<div>Loading</div>}>
+          <Router>
+            <Views />
+          </Router>
+        </Suspense>
+      </StoreContext.Provider>
+    </ConfigProvider>
   );
 };
 

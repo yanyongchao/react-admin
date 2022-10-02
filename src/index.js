@@ -1,7 +1,6 @@
 import React from "react";
 import App from "./App";
 import { createRoot } from "react-dom/client";
-import "antd/dist/antd.less";
 import "@/styles/index.less";
 import "./mock";
 

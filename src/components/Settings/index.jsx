@@ -4,6 +4,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import ColorInput from "../ColorInput";
 import { useSettings } from "@/hooks";
 import { observer } from "mobx-react";
+import { ConfigProvider } from "antd";
 
 import "./index.less";
 const Settings = observer(() => {
@@ -36,6 +37,15 @@ const Settings = observer(() => {
               value={theme}
               onChange={(color) => {
                 setTheme(color);
+                ConfigProvider.config({
+                  prefixCls: "custom",
+                  theme: {
+                    primaryColor: color,
+                  },
+                });
+                window.less.modifyVars({
+                  "@primary-color": color,
+                });
               }}
             ></ColorInput>
           </Col>
